@@ -91,6 +91,15 @@ export default function Details({ navigation }) {
                 </View>
                 </View>
             </View>
+            <TouchableOpacity style={{marginBottom:30, alignItems:'center'}} onPress={() => navigation.push('Bid')}>
+            <Text style={{
+                padding:15,
+                paddingLeft:40,
+                paddingRight:40,
+                backgroundColor:'#5cc2f2',
+                borderRadius:20
+            }}>bid it</Text>
+        </TouchableOpacity>
         </View>
     );
 }

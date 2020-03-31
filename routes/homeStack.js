@@ -3,6 +3,7 @@ import {createAppContainer} from "react-navigation";
 import Details from "../components/details";
 import ListReusable from "../components/ListReusable";
 import NewComponent from "../components/NewComponent";
+import Bid from '../components/VendorBid'
 
 const screens = {
     List: {
@@ -17,6 +18,12 @@ const screens = {
             title: "Item Details"
         }
     },
+    Bid : {
+        screen: Bid,
+        navigationOptions: {
+            title: "Bid on Item"
+        }
+    }
 
 };
 
