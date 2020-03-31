@@ -2,6 +2,7 @@ import {createStackNavigator} from "react-navigation-stack";
 import {createAppContainer} from "react-navigation";
 import Details from "../components/details";
 import ListReusable from "../components/ListReusable";
+import NewComponent from "../components/NewComponent";
 
 const screens = {
     List: {
@@ -11,7 +12,7 @@ const screens = {
         }
     },
     Details: {
-        screen: Details,
+        screen: NewComponent,
         navigationOptions: {
             title: "Item Details"
         }

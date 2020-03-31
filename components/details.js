@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import { StyleSheet, View, Image, Text, TouchableOpacity } from "react-native";
-import { AntDesign, Ionicons } from "@expo/vector-icons";
+import React from "react";
+import { StyleSheet, View, Image, Text, TouchableOpacity, FlatList } from "react-native";
+import { AntDesign, Ionicons } from '@expo/vector-icons';
 
 export default function Details({ navigation }) {
   return (
@@ -19,8 +19,12 @@ export default function Details({ navigation }) {
                 <Text style={styles.Heading}>
                   {navigation.state.params.item.Category}
                 </Text>
-                <TouchableOpacity>
-                <AntDesign name="hearto" size={27}/>
+                <TouchableOpacity style={{flexDirection: 'row',}} >
+                  <AntDesign name="staro" size={27} />
+                  <AntDesign name="staro" size={27}/>
+                  <AntDesign name="staro" size={27}/>
+                  <AntDesign name="staro" size={27}/>
+                  <AntDesign name="staro" size={27}/>
                 </TouchableOpacity>
               </View>
               <Text style={styles.subHeading}>
@@ -128,7 +132,6 @@ const styles = StyleSheet.create({
     borderColor: "#bbb",
     borderWidth: 1,
     borderStyle: "solid",
-    borderRadius: 1,
     borderRadius: 7,
     width: "100%",
     flexDirection: "row"
