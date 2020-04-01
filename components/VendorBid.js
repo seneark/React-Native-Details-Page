@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import {
   StyleSheet,
   Text,
@@ -8,18 +8,35 @@ import {
   TouchableOpacity
 } from "react-native";
 import img from "../assets/marshmallow.png";
+import DatePicker from "react-native-datepicker";
+import {Ionicons, AntDesign} from '@expo/vector-icons';
 
 export default class Bid extends Component {
+  constructor(props) {
+    console.ignoredYellowBox = ['Warning:'];
+    super(props);
+    const today = new Date();
+    const date =
+        today.getDate() +
+        "-" +
+        (today.getMonth() + 1) +
+        "-" +
+        today.getFullYear();
+    //set value in state for initial date
+    this.state = {date: "", time: ""};
+  }
+
   state = {
     Date: null,
     Time: null
   };
+
   render() {
     return (
-      <View style={styles.container}>
-        <Text
-          style={{
-            textAlign: "center",
+        <View style={styles.container}>
+          <Text
+              style={{
+                textAlign: "center",
             fontSize: 20,
             fontFamily: "ComicNeuRegBold"
           }}
@@ -48,75 +65,74 @@ export default class Bid extends Component {
                 </Text>
                 <Text style={styles.Quantity}>Quantity : 11kg</Text>
               </View>
-              <Picker
-                style={{ width: "90%" }}
-                selectedValue={this.state.Date}
-                onValueChange={(itemValue, itemIndex) =>
-                  this.setState({ Date: itemValue })
-                }
-              >
-                <Picker.Item
-                  label="Select a Date"
-                  value="0"
-                  color="#4c5f7a"
-                ></Picker.Item>
-                <Picker.Item
-                  label="Today"
-                  value="1"
-                  color="#5cc2f2"
-                ></Picker.Item>
-                <Picker.Item
-                  label="Yesterday"
-                  value="2"
-                  color="#5cc2f2"
-                ></Picker.Item>
-                <Picker.Item
-                  label="Day before yesterday"
-                  value="3"
-                  color="#5cc2f2"
-                ></Picker.Item>
-              </Picker>
-              <Picker
-                style={{ width: "90%" }}
-                selectedValue={this.state.Time}
-                onValueChange={(itemValue, itemIndex) =>
-                  this.setState({ Time: itemValue })
-                }
-              >
-                <Picker.Item
-                  label="Select a Time"
-                  value="0"
-                  color="#4c5f7a"
-                ></Picker.Item>
-                <Picker.Item
-                  label="12 noon"
-                  value="1"
-                  color="#5cc2f2"
-                ></Picker.Item>
-                <Picker.Item
-                  label="6 evening"
-                  value="2"
-                  color="#5cc2f2"
-                ></Picker.Item>
-                <Picker.Item
-                  label="12 mid night"
-                  value="3"
-                  color="#5cc2f2"
-                ></Picker.Item>
-                <Picker.Item
-                  label="9 morning"
-                  value="4"
-                  color="#5cc2f2"
-                ></Picker.Item>
-              </Picker>
-              <View style={{ marginTop: 20 }}>
+              <View style={{flexDirection: 'row'}}>
+                <AntDesign name='calendar' size={30} style={{position: 'absolute', top: 4, left: 10}}/>
+                <DatePicker
+                    style={{width: '90%'}}
+                    date={this.state.date} //initial date from state
+                    mode="date" //The enum of date, datetime and time
+                    placeholder="Select a Date for Bidding"
+                    format="DD-MM-YYYY"
+                    minDate="01-01-2016"
+                    maxDate="01-01-2025"
+                    confirmBtnText="Confirm"
+                    cancelBtnText="Cancel"
+                    customStyles={{
+                      dateIcon: {
+                        display: 'none'
+                      },
+                      dateInput: {
+                        marginLeft: 0,
+                        borderRadius: 20,
+                        borderColor: '#5cc2f2',
+                        borderWidth: 0.5,
+                        alignItems: 'flex-start',
+                        paddingLeft: 60,
+
+                      }
+                    }}
+                    onDateChange={date => {
+                      this.setState({date: date});
+                    }}
+                />
+              </View>
+              <View style={{flexDirection: 'row'}}>
+                <Ionicons name='md-time' size={30} style={{position: 'absolute', top: 10, left: 12}}/>
+                <DatePicker
+                    style={{width: '90%', marginTop: 6}}
+                    date={this.state.time} //initial date from state
+                    mode="time" //The enum of date, datetime and time
+                    placeholder="Select a Time for Bidding"
+                    confirmBtnText="Confirm"
+                    cancelBtnText="Cancel"
+                    is24Hour={false}
+                    customStyles={{
+                      dateIcon: {
+                        display: 'none'
+                      },
+                      dateInput: {
+                        marginLeft: 0,
+                        borderRadius: 20,
+                        borderColor: '#5cc2f2',
+                        borderWidth: 0.5,
+                        alignItems: 'flex-start',
+                        paddingLeft: 60,
+
+                      }
+                    }}
+                    onDateChange={time => {
+                      this.setState({time: time});
+                    }}
+                />
+              </View>
+              <View style={{marginTop: 20}}>
                 <View
-                  style={{
-                    flexDirection: "row",
-                    alignItems: "center",
-                    width: "80%",
-                    justifyContent: "space-between"
-                  }}
+                    style={{
+                      flexDirection: "row",
+                      alignItems: "center",
+                      width: "80%",
+                      justifyContent: "space-between"
+                    }}
                 >
                   <TouchableOpacity>
                     <Text style={styles.BidForIt}>Bid For It</Text>

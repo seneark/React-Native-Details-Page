@@ -12,6 +12,7 @@ const getFonts = () => {
 };
 
 export default function App() {
+  console.ignoredYellowBox = ['Warning:'];
   const [fontsLoaded, setFontsLoaded] = useState(false);
   if (fontsLoaded) {
       return <HomeStack/>;

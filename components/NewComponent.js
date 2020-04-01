@@ -1,8 +1,15 @@
-import React from "react";
-import { StyleSheet, View, Image, Text, TouchableOpacity, FlatList } from "react-native";
-import { AntDesign, Ionicons } from '@expo/vector-icons';
+import React, {useState} from "react";
+import {StyleSheet, View, Image, Text, TouchableOpacity, FlatList} from "react-native";
+import {AntDesign, Ionicons} from '@expo/vector-icons';
+import StarRating from 'react-native-star-rating';
 
 export default function Details({ navigation }) {
+    const [rating, setRating] = useState(3.5);
+
+    function onStarRatingPress(rating) {
+        setRating(rating)
+    }
+
     return (
         <View style={styles.container}>
             <View style={styles.content}>
@@ -15,17 +22,22 @@ export default function Details({ navigation }) {
                     </View>
                     <View>
                         <View style={styles.ListTextCont}>
-                            <View style={{flexDirection:'row', justifyContent:'space-between'}}>
+                            <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
                                 <Text style={styles.Heading}>
                                     {navigation.state.params.item.Category}
                                 </Text>
-                                <TouchableOpacity style={{flexDirection: 'row',}} >
-                                    <AntDesign name="staro" size={27} />
-                                    <AntDesign name="staro" size={27}/>
-                                    <AntDesign name="staro" size={27}/>
-                                    <AntDesign name="staro" size={27}/>
-                                    <AntDesign name="staro" size={27}/>
-                                </TouchableOpacity>
+                                <StarRating
+                                    starSize={28}
+                                    disabled={false}
+                                    emptyStar={'ios-star-outline'}
+                                    fullStar={'ios-star'}
+                                    halfStar={'ios-star-half'}
+                                    iconSet={'Ionicons'}
+                                    maxStars={5}
+                                    rating={rating}
+                                    selectedStar={(rating) => onStarRatingPress(rating)}
+                                    fullStarColor={'#5cc2f2'}
+                                />
                             </View>
                             <Text style={styles.subHeading}>
                                 Subcategory : {navigation.state.params.item.Subcategory}
